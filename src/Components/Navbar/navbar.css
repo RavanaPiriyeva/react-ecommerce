@@ -1,0 +1,29 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.login {
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    margin: 0 10px;
+}
+
+.basket {
+    position: relative;
+}
+
+.basket p {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -15px;
+    left: 35px;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    border-radius: 50%;
+}

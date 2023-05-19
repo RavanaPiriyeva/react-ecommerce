@@ -1,0 +1,20 @@
+.basket {
+    padding: 100px 0;
+
+}
+
+.basket .add-btn {
+    font-size:15px ;
+    transition: all .5s;
+}
+.basket .add-btn:hover {
+   background-color: red;
+}
+.basket .remove-btn {
+    font-size:15px ;
+    background-color: red;
+}
+.btn-body{
+    display: flex;
+    align-items: center;
+}

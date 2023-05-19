@@ -1,0 +1,22 @@
+.product {
+    padding: 100px 0;
+    background-color: rgb(243, 243, 243);
+
+
+}
+
+.product .add-btn {
+    font-size:15px ;
+    transition: all .5s;
+}
+.product .add-btn:hover {
+   background-color: red;
+}
+.product .remove-btn {
+    font-size:15px ;
+    background-color: red;
+}
+.btn-body{
+    display: flex;
+    align-items: center;
+}

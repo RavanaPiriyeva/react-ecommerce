@@ -1,12 +1,13 @@
-.login-page {
-    padding: 100px 0;
+
+.register-page {
+    padding: 70px 0;
     background-image: url('https://www.itl.cat/pngfile/big/187-1872031_hd-fancy-wallpapers-amazing-images-cool-background-fancy.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.login-box {
+.register-box {
   background-color: rgba(255, 255, 255, 0.144);
     backdrop-filter: blur(10px);
     color: white;
@@ -19,17 +20,17 @@ input:focus{
     outline: none;
 }
 h1{
-    position: relative;   
-   }
-   h1::after{
-       position: absolute;
-       content: "";
-       left: -50px;
-       top: -10px;
-       width: 100%;
-       background-color: black;
-       height: 70px;
-       z-index: -1;
-       clip-path: polygon(100% 0, 81% 48%, 100% 100%, 0 100%, 0 0);
-   
-   }
+ position: relative;   
+}
+h1::after{
+    position: absolute;
+    content: "";
+    left: -50px;
+    top: -10px;
+    width: 100%;
+    background-color: black;
+    height: 70px;
+    z-index: -1;
+    clip-path: polygon(100% 0, 81% 48%, 100% 100%, 0 100%, 0 0);
+
+}
