@@ -190,11 +190,11 @@ const AdminProduct = () => {
                     <form action="">
                         <div className="input-item">
                             <label htmlFor="title">Title</label>
-                            <input id="title" type="text" placeholder="Title" type="text" onChange={(e) => setaddTitle(e.target.value)} />
+                            <input id="title" type="text" placeholder="Title"  onChange={(e) => setaddTitle(e.target.value)} />
                         </div>
                         <div className="input-item">
                             <label htmlFor="price">Price</label>
-                            <input id="price" type="text" placeholder="Price" type="text" onChange={(e) => setaddPrice(e.target.value)} />
+                            <input id="price" type="text" placeholder="Price"  onChange={(e) => setaddPrice(e.target.value)} />
                         </div>
                     </form>
                     <Button variant="contained" onClick={addSave}> Save </Button>
@@ -211,11 +211,11 @@ const AdminProduct = () => {
                     <form action="">
                         <div className="input-item">
                             <label htmlFor="title">Title</label>
-                            <input id="title" type="text" placeholder="Title" type="text" value={editTitle} onChange={(e) => seteditTitle(e.target.value)} />
+                            <input id="title" type="text" placeholder="Title"  value={editTitle} onChange={(e) => seteditTitle(e.target.value)} />
                         </div>
                         <div className="input-item">
                             <label htmlFor="price">Price</label>
-                            <input id="price" type="text" placeholder="Price" type="text" value={editPrice} onChange={(e) => seteditPrice(e.target.value)} />
+                            <input id="price" type="text" placeholder="Price"  value={editPrice} onChange={(e) => seteditPrice(e.target.value)} />
                         </div>
                     </form>
                     <Button variant="contained" onClick={editSave}> Save </Button>

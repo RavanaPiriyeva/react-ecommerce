@@ -23,7 +23,7 @@ const Login = () => {
       if (user) {
         user.islogin=true
         setUsers([...users])
-        navigate('/admin/products');
+        navigate('/admin');
 
  
       } else {

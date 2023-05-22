@@ -12,23 +12,30 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { BasketContext } from "./BasketContext";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import "./basket.css";
+import Order from "../../Components/Order/Order";
 
 const Basket = () => {
   //  const [total, setTotal] = useState(0);
 
-  const { addToBasket, removeFromBasket, basketItems,total } =
+  const { addToBasket, removeFromBasket, basketItems, total } =
     useContext(BasketContext);
   const handleClick = (product) => {
-  
-    if (!basketItems.some((item) => item.id === product.id)) { addToBasket(product); }
-     else { removeFromBasket(product);}
-    
+    if (!basketItems.some((item) => item.id === product.id)) {
+      addToBasket(product);
+    } else {
+      removeFromBasket(product);
+    }
   };
   return (
     <div className="basket">
-     
       <Container>
-      <div className="total">Total Count : {total()}$</div>
+        <div className="top">
+          <div className="total">Total Count : {total()}$</div>
+          <div>
+            <Order />
+          </div>
+        </div>
+
         <Grid
           container
           rowSpacing={1}
