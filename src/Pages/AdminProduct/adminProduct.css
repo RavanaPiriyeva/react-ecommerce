@@ -1,0 +1,16 @@
+input {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid gray;
+
+}
+
+label {
+    display: inline-block;
+    width: 70px;
+}
+
+.input-item {
+    margin: 20px 0;
+}

@@ -1,45 +1,35 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import './login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginContext } from './LoginContext';
 const Login = () => {
-  // const addProductValidationSchema = Yup.object().shape({
-  //   name: Yup.string()
-  //     .max(15, 'Name maksimum 15 simvoldan ibarət olamlidir!')
-  //     .required("Name doldurulmalıdır!"),
-  //   email: Yup.string()
-  //     .email('Yalnış emali adress!')
-  //     .required('Email doldurulmalıdır!')
-  //     .test("email", "Email  @code.edu.az ilə bitməlidir!", (value) => {
-  //       return value.endsWith("@code.edu.az");
-  //     }),
-  //   gender: Yup.string().required("Gender seçilməlidir!"),
-  //   password: Yup.string()
-  //     .required("Password doldurulmalıdır!")
-  //     .min(8, "Minimum 8 simvoldan ibarət olamlidir!")
-  //     .matches(/^(?=.*[A-Z])/, "Password böyük hərf ilə başlamalıdır !"),
-  //   confirmPassword: Yup.string()
-  //     .required("Confirm password doldurulmalıdır!")
-  //     .min(8, "Minimum 8 simvoldan ibarət olamlidir!")
-  //     .matches(/^(?=.*[A-Z])/, " Confirm Password böyük hərf ilə başlamalıdır !")
-  //     .oneOf([Yup.ref("password"), null], "Password ilə eyni deyil!"),
-
-  // });
-
+  const { users,setUsers } = useContext(LoginContext);
+  const [loginError, setLoginError] = useState('');
+  let navigate =useNavigate();
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
-      gender: "female",
       password: "",
-      confirmPassword: "",
     },
-   // validationSchema: addProductValidationSchema,
     onSubmit: (values) => {
       console.log(values);
-      alert("Qeydiyyatdan uğurla keçdiniz!");
+      const user = users.find(
+        (user) => user.email === values.email && user.password === values.password
+      );
+
+      if (user) {
+        alert('Login successful');
+        user.islogin=true
+        setUsers([...users])
+        navigate('/');
+
+ 
+      } else {
+        setLoginError('Invalid email or password');
+      }
 
 
     },
@@ -79,6 +69,7 @@ const Login = () => {
 
           <div>
             {/* <button type="submit">Submit</button> */}
+            {loginError && <div style={{ color: "red" }}>{loginError}</div>}
             <input type="submit" value="Submit" style={{ padding: "10px 50px", border: "none", color: "white", backgroundColor: "green", borderRadius: 5 ,margin:"20px auto" ,display:"block",cursor:"pointer"}} />
           </div>
         </>

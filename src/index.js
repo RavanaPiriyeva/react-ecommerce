@@ -1,19 +1,34 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { BasketProvider } from './Pages/Basket/BasketContext';
+import { LoginProvider } from './Pages/Login/LoginContext';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BasketProvider>
-  <BrowserRouter>
-  <App></App>
-</BrowserRouter>
-</BasketProvider>
+  <QueryClientProvider client={queryClient}>
+    <LoginProvider>
+    <BasketProvider>
+      <BrowserRouter>
+        <App></App>
+      </BrowserRouter>
+    </BasketProvider>
+    </LoginProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
