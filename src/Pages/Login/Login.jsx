@@ -21,10 +21,9 @@ const Login = () => {
       );
 
       if (user) {
-        alert('Login successful');
         user.islogin=true
         setUsers([...users])
-        navigate('/');
+        navigate('/admin/products');
 
  
       } else {

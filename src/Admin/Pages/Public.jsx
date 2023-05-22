@@ -5,6 +5,7 @@ import Register from '../../Pages/Register/Register'
 import { Route, Routes } from "react-router-dom";
 import Layout from '../../Components/Layout';
 import Products from '../../Pages/Products/Products';
+import { Notfound } from '../../Pages/NotFound/Notfound';
 const Public = () => {
     return (
         <Layout>
@@ -13,6 +14,8 @@ const Public = () => {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
+          <Route path="*" element={<Notfound />} />
+
         </Routes>
       </Layout>
     )

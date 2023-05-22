@@ -1,20 +1,21 @@
-import React from 'react'
-import Products from '../../Pages/Products/Products'
+import React from "react";
+import Products from "../../Pages/Products/Products";
 import { Route, Routes } from "react-router-dom";
-import Layout from '../../Components/Layout';
-import Basket from '../../Pages/Basket/Basket';
-import AdminProduct from '../../Pages/AdminProduct/AdminProduct';
+import Layout from "../../Components/Layout";
+import Basket from "../../Pages/Basket/Basket";
+import AdminProduct from "../../Pages/AdminProduct/AdminProduct";
+import { Notfound } from "../../Pages/NotFound/Notfound";
 const Private = () => {
-    return (
-        <Layout>
-        <Routes>
-        <Route path="/" element={<AdminProduct />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/basket" element={<Basket />} />
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/admin/products" element={<AdminProduct />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/basket" element={<Basket />} />
+       <Route path="*" element={<Notfound />} />
+      </Routes>
+    </Layout>
+  );
+};
 
-        </Routes>
-      </Layout>
-    )
-}
-
-export default Private
+export default Private;

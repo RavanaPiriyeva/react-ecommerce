@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { BasketProvider } from './Pages/Basket/BasketContext';
 import { LoginProvider } from './Pages/Login/LoginContext';
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

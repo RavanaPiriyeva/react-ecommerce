@@ -136,7 +136,7 @@ const Register = () => {
             </div>
           </>
         </form>
-        <p>If you have account : <Link to="/login" style={{color:"gray"}}> Login</Link></p>  
+        <p>If you have account : <Link to="/" style={{color:"gray"}}> Login</Link></p>  
 
       </div>
       </div>
