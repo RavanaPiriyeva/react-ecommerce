@@ -14,28 +14,34 @@ import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 import './products.css'
 import { BasketContext } from "../Basket/BasketContext";
+import { useQuery } from "react-query";
 
 const Products = () => {
   const { addToBasket, removeFromBasket, basketItems } = useContext(BasketContext);
   // const isInBasket = basketItems.some((item) => item.id === product.id);
 
+  const { data, isLoading, error, refetch } = useQuery("productData", () => {
+    return axios.get('https://fakestoreapi.com/products');
+})
+
+
   const [products, setproducts] = useState([]);
-  useEffect(() => {
+  // useEffect(() => {
 
-    loadData();
-    console.log(products)
+  //   loadData();
+  //   console.log(products)
 
 
-  }, [])
-  const loadData = () => {
-    axios.get('https://fakestoreapi.com/products')
-      .then(res => {
-        setproducts(res.data);
-      })
-      .catch(err => {
+  // }, [])
+  // const loadData = () => {
+  //   axios.get('https://fakestoreapi.com/products')
+  //     .then(res => {
+  //       setproducts(res.data);
+  //     })
+  //     .catch(err => {
 
-      })
-  }
+  //     })
+  // }
 
   const handleClick = (product) => {
     if (!basketItems.some((item) => item.id === product.id)) {
@@ -50,7 +56,7 @@ const Products = () => {
     <div className='product'>
       <Container>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
-          {products.map((product) => (
+          {data?.data?.map((product) => (
             <Grid item xs={3} style={{ padding: 20 }}>
               <Card sx={{ maxWidth: 345 }} style={{ height: '100%',  padding: 10 }}>
                 <CardMedia

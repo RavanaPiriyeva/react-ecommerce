@@ -8,6 +8,9 @@ a {
     border-radius: 5px;
     color: black;
     margin: 0 10px;
+    height: 100%;
+    display: inline-block;
+
 }
 
 .basket {

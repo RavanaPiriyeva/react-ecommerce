@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import './register.css'
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../Login/LoginContext';
 const Register = () => {
+
+  const { users, addUser } = useContext(LoginContext);
+
     const addProductValidationSchema = Yup.object().shape({
         name: Yup.string()
           .max(15, 'Name maksimum 15 simvoldan ibarət olamlidir!')
@@ -35,12 +39,11 @@ const Register = () => {
           gender: "female",
           password: "",
           confirmPassword: "",
+          islogin:false
         },
         validationSchema: addProductValidationSchema,
         onSubmit: (values) => {
-          console.log(values);
-          alert("Qeydiyyatdan uğurla keçdiniz!");
-    
+          addUser(values)
     
         },
       });
