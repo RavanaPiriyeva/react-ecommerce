@@ -63,7 +63,7 @@ const Register = () => {
                 value={formik.values.name}
                 style={{ border: "none", width: 230, padding: 10, backgroundColor: "transparent", borderBottom: "1px solid gray", color: "white" }}
               />
-              <p style={{ color: "red" }}>{formik.errors?.name}</p>
+             {formik.touched.name && formik.errors.name && (<p style={{ color: "red" }}>{formik.errors.name}</p>)} 
             </div>
             <div style={{ display: "flex", alignItems: "end", flexWrap: "wrap", padding: "20px 0" }}>
               <label htmlFor="email" style={{ minWidth: '150px', display: 'inline-block' }}>Email</label>
@@ -75,7 +75,7 @@ const Register = () => {
                 value={formik.values.email}
                 style={{ border: "none", width: 230, padding: 10, backgroundColor: "transparent", borderBottom: "1px solid gray", color: "white" }}
               />
-              <p style={{ color: "red" }}>{formik.errors?.email}</p>
+             {formik.touched.email && formik.errors.email && (<p style={{ color: "red" }}>{formik.errors.email}</p>)} 
             </div>
             <div style={{ display: "flex", alignItems: "end", flexWrap: "wrap", padding: "20px 0" }}>
               <label htmlFor="password" style={{ minWidth: '150px', display: 'inline-block' }}>Password</label>
@@ -87,7 +87,7 @@ const Register = () => {
                 value={formik.values.password}
                 style={{ border: "none", width: 230, padding: 10, backgroundColor: "transparent", borderBottom: "1px solid gray", color: "white" }}
               />
-              <p style={{ color: "red" }}>{formik.errors?.password}</p>
+             {formik.touched.password && formik.errors.password && (<p style={{ color: "red" }}>{formik.errors.password}</p>)} 
             </div>
             <div style={{ display: "flex", alignItems: "end", flexWrap: "wrap", padding: "20px 0" }}>
               <label htmlFor="confirmPassword" style={{ minWidth: '150px', display: 'inline-block' }}>Confirm Password</label>
@@ -99,7 +99,7 @@ const Register = () => {
                 value={formik.values.confirmPassword}
                 style={{ border: "none", width: 230, padding: 10, backgroundColor: "transparent", borderBottom: "1px solid gray", color: "white" }}
               />
-              <p style={{ color: "red" }}>{formik.errors?.confirmPassword}</p>
+             {formik.touched.confirmPassword && formik.errors.confirmPassword && (<p style={{ color: "red" }}>{formik.errors.confirmPassword}</p>)} 
             </div>
 
             <div>
@@ -128,7 +128,7 @@ const Register = () => {
                 />
         Female
       </label>
-              <p style={{ color: "red" }}>{formik.errors?.gender}</p>
+      {formik.touched.gender && formik.errors.gender && (<p style={{ color: "red" }}>{formik.errors.gender}</p>)} 
             </div>
             <div>
               {/* <button type="submit">Submit</button> */}
