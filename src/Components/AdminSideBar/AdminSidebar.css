@@ -1,9 +1,22 @@
 .sidebar{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
+    min-height: 100%;
     width: 200px;
     background-color: black;
     color: white;
+    padding-top: 150px;
+}
+.sidebar a{
+    color: white;
+    width: 200px;
+    display: block;
+    padding: 20px;
+    font-size: 20px;
+    transition: all 0.5s;
+}
+.sidebar a:hover{
+    color: gray;
 }

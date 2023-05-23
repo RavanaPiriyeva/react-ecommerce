@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { BasketProvider } from './Pages/Basket/BasketContext';
 import { LoginProvider } from './Pages/Login/LoginContext';
+import { OrderProvider } from './Components/Order/OrderContext';
 
 
 const queryClient = new QueryClient({
@@ -22,11 +23,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <QueryClientProvider client={queryClient}>
     <LoginProvider>
-    <BasketProvider>
-      <BrowserRouter>
-        <App></App>
-      </BrowserRouter>
-    </BasketProvider>
+      <OrderProvider>
+        <BasketProvider>
+          <BrowserRouter>
+            <App></App>
+          </BrowserRouter>
+        </BasketProvider>
+      </OrderProvider>
     </LoginProvider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>

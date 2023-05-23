@@ -3,53 +3,53 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import './register.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../Login/LoginContext';
 const Register = () => {
 
-  const { users, addUser } = useContext(LoginContext);
+  const { users, addUser,message } = useContext(LoginContext);
+  let navigate = useNavigate()
 
-    const addProductValidationSchema = Yup.object().shape({
-        name: Yup.string()
-          .max(15, 'Name maksimum 15 simvoldan ibarət olamlidir!')
-          .required("Name doldurulmalıdır!"),
-        email: Yup.string()
-          .email('Yalnış emali adress!')
-          .required('Email doldurulmalıdır!')
-          .test("email", "Email  @code.edu.az ilə bitməlidir!", (value) => {
-            return value.endsWith("@code.edu.az");
-          }),
-        gender: Yup.string().required("Gender seçilməlidir!"),
-        password: Yup.string()
-          .required("Password doldurulmalıdır!")
-          .min(8, "Minimum 8 simvoldan ibarət olamlidir!")
-          .matches(/^(?=.*[A-Z])/, "Password böyük hərf ilə başlamalıdır !"),
-        confirmPassword: Yup.string()
-          .required("Confirm password doldurulmalıdır!")
-          .min(8, "Minimum 8 simvoldan ibarət olamlidir!")
-          .matches(/^(?=.*[A-Z])/, " Confirm Password böyük hərf ilə başlamalıdır !")
-          .oneOf([Yup.ref("password"), null], "Password ilə eyni deyil!"),
-    
-      });
-    
-      const formik = useFormik({
-        initialValues: {
-          name: "",
-          email: "",
-          gender: "female",
-          password: "",
-          confirmPassword: "",
-          islogin:false
-        },
-        validationSchema: addProductValidationSchema,
-        onSubmit: (values) => {
-          addUser(values)
-    
-        },
-      });
-    return (
-<div className="register-page">
-        <div  className="register-box">
+  const addProductValidationSchema = Yup.object().shape({
+    name: Yup.string()
+      .max(15, 'Name maksimum 15 simvoldan ibarət olamlidir!')
+      .required("Name doldurulmalıdır!"),
+    email: Yup.string()
+      .email('Yalnış emali adress!')
+      .required('Email doldurulmalıdır!')
+      .test("email", "Email  @code.edu.az ilə bitməlidir!", (value) => {
+        return value.endsWith("@code.edu.az");
+      }),
+    gender: Yup.string().required("Gender seçilməlidir!"),
+    password: Yup.string()
+      .required("Password doldurulmalıdır!")
+      .min(8, "Minimum 8 simvoldan ibarət olamlidir!")
+      .matches(/^(?=.*[A-Z])/, "Password böyük hərf ilə başlamalıdır !"),
+    confirmPassword: Yup.string()
+      .required("Confirm password doldurulmalıdır!")
+      .min(8, "Minimum 8 simvoldan ibarət olamlidir!")
+      .matches(/^(?=.*[A-Z])/, " Confirm Password böyük hərf ilə başlamalıdır !")
+      .oneOf([Yup.ref("password"), null], "Password ilə eyni deyil!"),
+
+  });
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      gender: "female",
+      password: "",
+      confirmPassword: "",
+      islogin: false
+    },
+    validationSchema: addProductValidationSchema,
+    onSubmit: (values) => {
+      addUser(values)
+     if(addUser(values)) navigate('/')
+    },
+  });
+  return (
+    <div className="register-page">
+      <div className="register-box">
         <h1>Register</h1>
         <form onSubmit={formik.handleSubmit}>
           <>
@@ -101,10 +101,10 @@ const Register = () => {
               />
               <p style={{ color: "red" }}>{formik.errors?.confirmPassword}</p>
             </div>
-  
+
             <div>
               <p style={{ minWidth: '150px', display: 'inline-block' }}>Select your gender:</p>
-  
+
               <label htmlFor="male" style={{ paddingRight: 20 }} >
                 <input
                   type="radio"
@@ -116,7 +116,7 @@ const Register = () => {
                 />
         Male
       </label>
-  
+
               <label htmlFor="female">
                 <input
                   type="radio"
@@ -132,15 +132,16 @@ const Register = () => {
             </div>
             <div>
               {/* <button type="submit">Submit</button> */}
-              <input type="submit" value="Submit" style={{ padding: "10px 50px", border: "none", color: "white", backgroundColor: "green", borderRadius: 5 ,margin:"20px auto" ,display:"block",cursor:"pointer"}} />
+              <input type="submit" value="Submit" style={{ padding: "10px 50px", border: "none", color: "white", backgroundColor: "green", borderRadius: 5, margin: "20px auto", display: "block", cursor: "pointer" }} />
             </div>
+            <p style={{color:"red"}}>{message}</p>
           </>
         </form>
-        <p>If you have account : <Link to="/" style={{color:"gray"}}> Login</Link></p>  
+        <p>If you have account : <Link to="/" style={{ color: "gray" }}> Login</Link></p>
 
       </div>
-      </div>
-    )
+    </div>
+  )
 }
 
 export default Register

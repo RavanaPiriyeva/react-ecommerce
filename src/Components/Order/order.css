@@ -1,4 +1,4 @@
-.order{
+.order {
     background-color: green;
     padding: 20px 30px;
     color: white;
@@ -6,6 +6,19 @@
     cursor: pointer;
     transition: all 0.5s;
 }
-.order:hover{
+
+.order:hover {
     opacity: 0.8;
+}
+.input-item-ordre{
+    margin-bottom: 20px;
+}
+.input-item-ordre input {
+    width: 250px;
+    padding: 10px;
+}
+
+.input-item-ordre label {
+    width: 80px;
+    display: inline-block;
 }

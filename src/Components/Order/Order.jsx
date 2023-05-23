@@ -4,6 +4,12 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Button, Paper, CircularProgress } from "@mui/material";
 import { BasketContext } from "../../Pages/Basket/BasketContext";
+import { OrderContext } from "./OrderContext";
+import './order.css'
+import { LoginContext } from "../../Pages/Login/LoginContext";
+import { useNavigate } from "react-router";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 const style = {
   position: "absolute",
   top: "50%",
@@ -18,57 +24,85 @@ const style = {
 const Order = () => {
   const { addToBasket, removeFromBasket, basketItems, total } =
     useContext(BasketContext);
+  const { orders, addOrder } = useContext(OrderContext);
+  const { users, addUser } = useContext(LoginContext);
   const [addAddres, setaddAddres] = useState("");
-
+  let navigate = useNavigate()
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    if (!users.some((item) => item.islogin === true)) {
+      navigate("/")
+    }
+
+  }
   const handleClose = () => setOpen(false);
 
+
+  const addProductValidationSchema = Yup.object().shape({
+    address: Yup.string()
+      .required("Address doldurulmalıdır!"),
+
+  });
+  let user = users.find((item) => item.islogin === true)
+  
+
+  const formik = useFormik({
+    initialValues: {
+      address: "",
+      total: total(),
+      count: basketItems.length,
+      user: user,
+    },
+    validationSchema: addProductValidationSchema,
+    onSubmit: (values) => {
+      handleClose()
+      addOrder(values)
+      console.log(values)
+    },
+  });
+
+
   const addSave = () => {
-    let arr =[]
+    handleClose()
     let order = {
       total: total(),
       count: basketItems.length,
       addres: addAddres,
     };
-   
-    handleClose();
-    let orders = localStorage.getItem("orders");
-   // localStorage.setItem("orders", JSON.stringify(arr))
-    
-      arr = JSON.parse(orders);
-      arr.push(order)
-      console.log(arr)
-      localStorage.setItem("orders", JSON.stringify(arr))
-  
+    addOrder(order)
   };
   return (
-    <div>
+    <div className="order-box">
       <div className="order" onClick={handleOpen}>
         Order
       </div>
       <Modal
-        open={open}
+        open={users.some((item) => item.islogin === true) ? open : ''}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form action="">
-            <h4>Please insert cuurent addres .This is inportant</h4>
-            <div className="input-item">
-              <label htmlFor="title">Addres</label>
-              <input
-                id="title"
-                type="text"
-                placeholder="Addres"
-                onChange={(e) => setaddAddres(e.target.value)}
-              />
-            </div>
+          <h4>Please insert cuurent addres .This is inportant</h4>
+          <form onSubmit={formik.handleSubmit}>
+            <>
+              <div style={{ display: "flex", alignItems: "end", flexWrap: "wrap", padding: "20px 0" }}>
+                <label htmlFor="address" style={{ minWidth: '150px', display: 'inline-block' }}>Address</label>
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  onChange={formik.handleChange}
+                  value={formik.values.address}
+                  style={{ border: "none", width: 230, padding: 10, backgroundColor: "transparent", borderBottom: "1px solid gray", }}
+                />
+                <p style={{ color: "red" }}>{formik.errors?.address}</p>
+              </div>
+              <input type="submit" value="Submit" style={{ padding: "10px 50px", border: "none", color: "white", backgroundColor: "green", borderRadius: 5, margin: "20px auto", display: "block", cursor: "pointer" }} />
+            </>
           </form>
-          <Button variant="contained" onClick={addSave}>
-          Save
-          </Button>
+
         </Box>
       </Modal>
     </div>

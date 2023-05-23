@@ -13,12 +13,13 @@ import { BasketContext } from "./BasketContext";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import "./basket.css";
 import Order from "../../Components/Order/Order";
+import { LoginContext } from "../Login/LoginContext";
 
 const Basket = () => {
   //  const [total, setTotal] = useState(0);
+  const { users, addUser } = useContext(LoginContext);
+  const { addToBasket, removeFromBasket, basketItems, total } = useContext(BasketContext);
 
-  const { addToBasket, removeFromBasket, basketItems, total } =
-    useContext(BasketContext);
   const handleClick = (product) => {
     if (!basketItems.some((item) => item.id === product.id)) {
       addToBasket(product);
@@ -30,8 +31,12 @@ const Basket = () => {
     <div className="basket">
       <Container>
         <div className="top">
-          <div className="total">Total Count : {total()}$</div>
+          <div className="total">Total Count : {total().toFixed(2)}$</div>
           <div>
+            {/* {
+              users.some((item) => item.islogin === true)? :<></>
+
+            } */}
             <Order />
           </div>
         </div>
@@ -41,8 +46,8 @@ const Basket = () => {
           rowSpacing={1}
           columnSpacing={{ xs: 1, sm: 2, md: 3, lg: 4 }}
         >
-          {basketItems.map((product) => (
-            <Grid item xs={3} style={{ padding: 20 }}>
+          {basketItems.map((product,index) => (
+            <Grid item xs={3} style={{ padding: 20 }} key={index}>
               <Card
                 sx={{ maxWidth: 345 }}
                 style={{

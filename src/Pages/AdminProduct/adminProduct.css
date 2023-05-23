@@ -1,4 +1,4 @@
-input {
+.adminproduct input {
     width: 300px;
     padding: 10px;
     border: none;
@@ -6,11 +6,14 @@ input {
 
 }
 
-label {
+.adminproduct label {
     display: inline-block;
     width: 70px;
 }
 
-.input-item {
+.adminproduct .input-item {
     margin: 20px 0;
+}
+.adminproduct{
+    padding-left: 200px;
 }

@@ -56,8 +56,8 @@ const Products = () => {
     <div className='product'>
       <Container>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3, lg: 4 }}>
-          {data?.data?.map((product) => (
-            <Grid item xs={3} style={{ padding: 20 }}>
+          {data?.data?.map((product ,index) => (
+            <Grid item xs={3} style={{ padding: 20 }} key={index}>
               <Card sx={{ maxWidth: 345 }} style={{ height: '100%',  padding: 10 }}>
                 <CardMedia
                   component="img"

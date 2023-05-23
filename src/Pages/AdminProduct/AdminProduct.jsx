@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import AdminSidebar from '../../Components/AdminSideBar/AdminSidebar';
 const AdminProduct = () => {
 
     const style = {
@@ -148,7 +149,8 @@ const AdminProduct = () => {
         mutationdelete.mutate()
     }
     return (
-        <div>
+        <div className='adminproduct'>
+            <AdminSidebar/>
             <Button
                 variant="contained"
                 color="success"
